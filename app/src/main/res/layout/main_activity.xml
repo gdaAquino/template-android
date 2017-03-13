@@ -2,24 +2,25 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/toolbar"
             layout="@layout/include_toolbar"/>
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/activity_vertical_padding"
-            android:paddingEnd="@dimen/activity_horizontal_padding"
             android:paddingStart="@dimen/activity_horizontal_padding"
-            android:paddingTop="@dimen/activity_vertical_padding">
+            android:paddingEnd="@dimen/activity_horizontal_padding"
+            android:paddingTop="@dimen/activity_vertical_padding"
+            android:paddingBottom="@dimen/activity_vertical_padding">
 
             <TextView
+                android:id="@+id/main_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_hello_world"/>
