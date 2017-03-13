@@ -26,6 +26,33 @@ android {
         archivesBaseName = "app-${versionName}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+            storeFile file('../keystore/debug.jks')
+        }
+        release {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+            storeFile file('../keystore/debug.jks')
+        }
+    }
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android.txt")
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+        }
+    }
     dataBinding {
         enabled = true
     }
@@ -40,17 +67,6 @@ android {
         javaMaxHeapSize "2g"
         // Enables Gradle to pre-dex library dependencies.
         preDexLibraries true
-    }
-    buildTypes {
-        debug {
-            minifyEnabled true
-            applicationIdSuffix ".debug"
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "$project.rootDir/tools/rules-proguard-debug.pro"
-        }
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-        }
     }
 }
 
