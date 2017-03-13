@@ -26,3 +26,11 @@ task findbugs(type: FindBugs) {
 afterEvaluate {
     build.dependsOn("findbugs")
 }
+
+gradle.taskGraph.afterTask { task, state ->
+    if (task.name == "findbugs" && state.failure) {
+        exec {
+            commandLine "open", "$project.buildDir/outputs/reports/findbugs.html"
+        }
+    }
+}

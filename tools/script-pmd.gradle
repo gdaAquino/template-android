@@ -28,3 +28,11 @@ task pmd(type: Pmd) {
 afterEvaluate {
     preBuild.dependsOn("pmd")
 }
+
+gradle.taskGraph.afterTask { task, state ->
+    if (task.name == "pmd" && state.failure) {
+        exec {
+            commandLine "open", "$project.buildDir/outputs/reports/pmd.html"
+        }
+    }
+}
